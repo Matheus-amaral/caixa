@@ -36,7 +36,7 @@
         categories: [],
         form: {},
         error: '',
-        sending: false,
+        sending: false, 
         type: 'insert'
       };
     },
