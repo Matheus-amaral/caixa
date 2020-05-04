@@ -8,8 +8,10 @@
     </div>
 
     <div class="transaction-card-list" v-if="transactions.length">
-      <Card :category="transaction.category.name" v-for="transaction in transactions" v-bind:key="transaction">
-        Operação: {{ transaction.category ? transaction.category.name : '' }}
+      <Card :category="transaction.type" v-for="transaction in transactions" v-bind:key="transaction">
+        Operação: {{ transaction.type == 'entrada' ? 'Entrada' : 'Saida' }}
+        <br/>
+        Categoria: {{ transaction.category ? transaction.category.name : '' }}
         <br/>
         Valor: R$ {{ !Number.isInteger(transaction.amount) ? transaction.amount.toLocaleString('pt-BR') : transaction.amount.toLocaleString('pt-BR')+',00' }}
         <br/>
@@ -103,18 +105,18 @@
         this.error['type'] = this.form['type'] != '' && this.form['type'] ? '' : 'Informe o tipo';
         return this.error['amount'] == '' && this.error['description'] == '' && this.error['category'] == '';
       },
-      save () {
+      async save () {
         this.sending = true;
         this.form['amount'] = this.form['amount'].replace("R$ ", "");
         this.form['amount'] = this.form['amount'].replace(/\./g,'');
         this.form['amount'] = this.form['amount'].replace(",", ".");
         this.form['amount'] = parseFloat(this.form['amount']);
         console.log(parseFloat(this.form['amount']));
-        console.log(this.form);
         if(this.validate()) {
           this.form['date'] = moment();
           this.form['caixa_id'] = this.caixa['id'];
-          axios.post('https://caixa-api.uc.r.appspot.com/api/transactions', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+          console.log(this.form.amount);
+          await axios.post('https://caixa-api.uc.r.appspot.com/api/transactions', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
             this.sending = false;
             this.hide();
             axios.get('https://caixa-api.uc.r.appspot.com/api/caixas/transactions?' + 'id=' + this.caixa.id + '&access_token='+localStorage.getItem('token')).then(response => {

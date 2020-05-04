@@ -1,7 +1,7 @@
 <template>
-  <div class="card" :class="category == 'Entrada' ? 'green-card' : 'red-card'">
+  <div class="card" :class="category == 'entrada' ? 'green-card' : 'red-card'">
     <div class="content">
-      <div :class="category == 'Entrada' ? 'green-content' : 'red-content'"><slot></slot></div>
+      <div :class="category == 'entrada' ? 'green-content' : 'red-content'"><slot></slot></div>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@
   .content {
     background-color: white;
     border-radius: 7.5px; 
+    height: 120;
   }
 
   .red-content {
@@ -38,7 +39,7 @@
 
   .card {
     width: 278px;
-    height: 106px;
+    height: 120px;
     margin: 20px;
     padding: 2px;
     border-radius: 10px;

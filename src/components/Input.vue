@@ -4,7 +4,7 @@
       <label :class="error != '' ? 'error-label': ''">{{ label }}</label>
       <div class="error-label">{{ error }}</div>
     </div>
-    <input v-if="currency" v-model.lazy="value" v-money="money" :class="error != '' ? 'input error': 'input'" :type="type" :name="name" :placeholder="placeholder" v-on:change="change"/>
+    <input v-if="currency" v-model.lazy="amount" v-money="money" :class="error != '' ? 'input error': 'input'" :type="type" :name="name" :placeholder="placeholder" v-on:change="change"/>
     <input v-else :class="error != '' ? 'input error': 'input'" :type="type" :name="name" :placeholder="placeholder" v-on:change="change" :value="value"/>
   </div>
 </template>
@@ -25,6 +25,7 @@
     },
     data() {
       return {
+        amount: '',
         money: {
           decimal: ',',
           thousands: '.',
