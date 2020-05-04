@@ -44,7 +44,7 @@
       };
     },
     mounted() {
-      axios.get('https://caixa-276110.uc.r.appspot.com/api/users/current?' + 'id=' + localStorage.getItem('id') + '&access_token='+localStorage.getItem('token')).then(response => {
+      axios.get('https://caixa-api.uc.r.appspot.com/api/users/current?' + 'id=' + localStorage.getItem('id') + '&access_token='+localStorage.getItem('token')).then(response => {
         this.user = response.data.user[0];
         this.caixas = this.user.caixas;
         console.log(this.user);
@@ -75,9 +75,9 @@
         if(this.validate()) {
           this.form['saldo'] = 0;
           this.form['user_id'] = localStorage.getItem('id');
-          axios.post('https://caixa-276110.uc.r.appspot.com/api/caixas', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+          axios.post('https://caixa-api.uc.r.appspot.com/api/caixas', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
             this.sending = false;
-            axios.get('https://caixa-276110.uc.r.appspot.com/api/users/current?' + 'id=' + localStorage.getItem('id') + '&access_token='+localStorage.getItem('token')).then(response => {
+            axios.get('https://caixa-api.uc.r.appspot.com/api/users/current?' + 'id=' + localStorage.getItem('id') + '&access_token='+localStorage.getItem('token')).then(response => {
               this.user = response.data.user[0];
               this.caixas = this.user.caixas;
               console.log(this.user);

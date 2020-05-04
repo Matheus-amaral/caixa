@@ -61,7 +61,7 @@
         this.id = this.$route.params.id;
     },
     mounted() {
-      axios.get('https://caixa-276110.uc.r.appspot.com/api/caixas/transactions?' + 'id=' + this.id + '&access_token='+localStorage.getItem('token')).then(response => {
+      axios.get('https://caixa-api.uc.r.appspot.com/api/caixas/transactions?' + 'id=' + this.id + '&access_token='+localStorage.getItem('token')).then(response => {
         this.caixa = response.data.caixa[0];
         this.transactions = this.caixa.transactions;
         console.log(this.caixa)
@@ -69,7 +69,7 @@
         console.log(error);
       });
 
-      axios.get('https://caixa-276110.uc.r.appspot.com/api/categories?&access_token='+localStorage.getItem('token')).then(response => {
+      axios.get('https://caixa-api.uc.r.appspot.com/api/categories?&access_token='+localStorage.getItem('token')).then(response => {
         this.categories = response.data;
       }).catch(error=> {
         console.log(error);
@@ -114,10 +114,10 @@
         if(this.validate()) {
           this.form['date'] = moment();
           this.form['caixa_id'] = this.caixa['id'];
-          axios.post('https://caixa-276110.uc.r.appspot.com/api/transactions', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+          axios.post('https://caixa-api.uc.r.appspot.com/api/transactions', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
             this.sending = false;
             this.hide();
-            axios.get('https://caixa-276110.uc.r.appspot.com/api/caixas/transactions?' + 'id=' + this.caixa.id + '&access_token='+localStorage.getItem('token')).then(response => {
+            axios.get('https://caixa-api.uc.r.appspot.com/api/caixas/transactions?' + 'id=' + this.caixa.id + '&access_token='+localStorage.getItem('token')).then(response => {
               this.caixa = response.data.caixa[0];
               this.transactions = response.data.caixa[0].transactions;
               console.log(this.caixa)

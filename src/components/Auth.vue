@@ -47,7 +47,7 @@
       login() {
         this.sending = true;
         if(this.validate()) {
-          axios.post('https://caixa-276110.uc.r.appspot.com/api/users/login', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+          axios.post('https://caixa-api.uc.r.appspot.com/api/users/login', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
             this.sending = false;
             console.log(response);
             localStorage.setItem('token', response.data['id']);

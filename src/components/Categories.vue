@@ -41,7 +41,7 @@
       };
     },
     mounted() {
-      axios.get('https://caixa-276110.uc.r.appspot.com/api/categories?' + 'filter=' + JSON.stringify({"where":{"user_id":localStorage.getItem('id')}}) + '&access_token='+localStorage.getItem('token')).then(response => {
+      axios.get('https://caixa-api.uc.r.appspot.com/api/categories?' + 'filter=' + JSON.stringify({"where":{"user_id":localStorage.getItem('id')}}) + '&access_token='+localStorage.getItem('token')).then(response => {
         this.categories = response.data;
       }).catch(error=> {
         console.log(error);
@@ -74,9 +74,9 @@
         if(this.validate()) {
           if(this.type == 'insert') {
             this.form['user_id'] = localStorage.getItem('id');
-            axios.post('https://caixa-276110.uc.r.appspot.com/api/categories', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+            axios.post('https://caixa-api.uc.r.appspot.com/api/categories', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
               this.sending = false;
-              axios.get('https://caixa-276110.uc.r.appspot.com/api/categories?' + 'filter=' + JSON.stringify({"where":{"user_id":localStorage.getItem('id')}}) + '&access_token='+localStorage.getItem('token')).then(response => {
+              axios.get('https://caixa-api.uc.r.appspot.com/api/categories?' + 'filter=' + JSON.stringify({"where":{"user_id":localStorage.getItem('id')}}) + '&access_token='+localStorage.getItem('token')).then(response => {
                 this.categories = response.data;
               }).catch(error=> {
                 console.log(error);
@@ -88,9 +88,9 @@
               console.log(error);
             });
           } else {
-            axios.put('https://caixa-276110.uc.r.appspot.com/api/categories/'+this.form.id, this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+            axios.put('https://caixa-api.uc.r.appspot.com/api/categories/'+this.form.id, this.form, {headers: {'content-type': 'application/json'}}).then(response => {
               this.sending = false;
-              axios.get('https://caixa-276110.uc.r.appspot.com/api/categories?' + 'filter=' + JSON.stringify({"where":{"user_id":localStorage.getItem('id')}}) + '&access_token='+localStorage.getItem('token')).then(response => {
+              axios.get('https://caixa-api.uc.r.appspot.com/api/categories?' + 'filter=' + JSON.stringify({"where":{"user_id":localStorage.getItem('id')}}) + '&access_token='+localStorage.getItem('token')).then(response => {
                 this.categories = response.data;
               }).catch(error=> {
                 console.log(error);

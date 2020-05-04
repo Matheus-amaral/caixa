@@ -55,10 +55,10 @@
       login() {
         this.sending = true;
         if(this.validate()) {
-          axios.post('https://caixa-276110.uc.r.appspot.com/api/users', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+          axios.post('https://caixa-api.uc.r.appspot.com/api/users', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
             this.sending = false;
             console.log(response);
-            axios.post('https://caixa-276110.uc.r.appspot.com/api/users/login', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
+            axios.post('https://caixa-api.uc.r.appspot.com/api/users/login', this.form, {headers: {'content-type': 'application/json'}}).then(response => {
               localStorage.setItem('token', response.data['id']);
               localStorage.setItem('id', response.data['userId']);
               localStorage.setItem('expires', moment().add(5, 'minutes'));

@@ -31,7 +31,7 @@
       };
     },
     mounted() {
-      axios.get('https://caixa-276110.uc.r.appspot.com/api/users/current?' + 'id=' + localStorage.getItem('id') + '&access_token='+localStorage.getItem('token')).then(response => {
+      axios.get('https://caixa-api.uc.r.appspot.com/api/users/current?' + 'id=' + localStorage.getItem('id') + '&access_token='+localStorage.getItem('token')).then(response => {
         this.user = response.data.user[0];
         this.caixas = this.user.caixas;
       }).catch(error=> {
